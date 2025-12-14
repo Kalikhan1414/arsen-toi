@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Арсеннің тұсаукесер тойының қадірлі қонағы болыңыз!</title>
+
+<meta name="description" content="Арсеннің тұсаукесер тойына шақыру">
+<meta name="robots" content="index, follow">
+
+<link rel="icon" href="images/favicon.ico">
+
+<!-- Bootstrap (локально) -->
+<link rel="stylesheet" href="css/bootstrap.css">
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#fff;
+}
+.blok-1 {
+    background: url("images/background.png") center/cover no-repeat;
+    padding:60px 15px;
+    text-align:center;
+    color:#1b1b1b;
+}
+.kurmetti {
+    font-size:28px;
+    margin-bottom:20px;
+}
+.shaktext {
+    font-size:18px;
+    line-height:1.6;
+}
+.blok-2, .blok-3, .blok-5 {
+    padding:50px 15px;
+    text-align:center;
+}
+.abouttoi div {
+    margin:10px 0;
+}
+.timer__items {
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+.timer__item {
+    font-size:22px;
+    background:#20741D;
+    color:#fff;
+    padding:10px 14px;
+    border-radius:6px;
+}
+.zayavka input, .zayavka textarea {
+    width:100%;
+    max-width:400px;
+    margin:8px auto;
+    padding:10px;
+}
+.zayotrp {
+    margin-top:15px;
+    padding:12px 30px;
+    background:#20741D;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+.zayotrp:hover {
+    opacity:.9;
+}
+footer {
+    padding:20px;
+    text-align:center;
+    font-size:14px;
+    color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- БЛОК 1 -->
+<section class="blok-1">
+    <h1 class="kurmetti">Құрметті қонақтар!</h1>
+    <div class="shaktext">
+        Сіз(дер)ді Арсеннің<br>
+        тұсаукесер тойына арналған<br>
+        салтанатты ақ дастарханымыздың<br>
+        қадірлі қонағы болуға шақырамыз.
+    </div>
+</section>
+
+<!-- БЛОК 2 -->
+<section class="blok-2">
+    <div class="abouttoi">
+        <div><strong>Той иелері:</strong> Калихан – Анель</div>
+        <div><strong>Өтетін уақыты:</strong><br>07.02.2025 / 15:00</div>
+
+        <div style="margin-top:20px;"><strong>Тойдың басталуына қалды:</strong></div>
+        <div class="timer">
+            <div class="timer__items">
+                <div class="timer__item" id="days">00</div>
+                <div class="timer__item" id="hours">00</div>
+                <div class="timer__item" id="minutes">00</div>
+                <div class="timer__item" id="seconds">00</div>
+            </div>
+        </div>
+
+        <div style="margin-top:25px;">
+            <strong>Мекен-жай:</strong><br>
+            Астана қ., Бағаналы 24<br>
+            <span>DIAMOND мейрамханасы</span>
+        </div>
+
+        <a href="https://go.2gis.com/ZjOeI" target="_blank">Карта арқылы ашу</a>
+    </div>
+</section>
+
+<!-- БЛОК 5 (ФОРМА) -->
+<section class="blok-5">
+    <h3>Құрметті қонақ, тойға келетініңізді растаңыз:</h3>
+
+    <form class="zayavka" onsubmit="sendForm(); return false;">
+        <label><input type="radio" name="answer" value="Иә, өзім барамын" checked> Иә, өзім барамын</label><br>
+        <label><input type="radio" name="answer" value="Жұбайыммен бірге барамын"> Жұбайыммен бірге барамын</label><br>
+        <label><input type="radio" name="answer" value="Келе алмаймын"> Келе алмаймын</label><br>
+
+        <input type="text" id="name" placeholder="Аты-жөніңіз" required>
+        <textarea id="wish" placeholder="Тілегіңіз"></textarea>
+
+        <button class="zayotrp">Жіберу</button>
+    </form>
+</section>
+
+<footer>
+    Арсеннің тұсаукесер тойы • 2025
+</footer>
+
+<script>
+/* Таймер */
+const deadline = new Date(2025,1,7,15,0,0);
+function timer() {
+    const diff = deadline - new Date();
+    if (diff <= 0) return;
+    const d = Math.floor(diff/1000/60/60/24);
+    const h = Math.floor(diff/1000/60/60)%24;
+    const m = Math.floor(diff/1000/60)%60;
+    const s = Math.floor(diff/1000)%60;
+    days.textContent = String(d).padStart(2,"0");
+    hours.textContent = String(h).padStart(2,"0");
+    minutes.textContent = String(m).padStart(2,"0");
+    seconds.textContent = String(s).padStart(2,"0");
+}
+setInterval(timer,1000);
+timer();
+
+/* Отправка формы (без сервера) */
+function sendForm() {
+    const answer = document.querySelector('input[name="answer"]:checked').value;
+    const name = document.getElementById("name").value;
+    const wish = document.getElementById("wish").value;
+
+    const text = 
+      "Жауап: " + answer +
+      "\nАты: " + name +
+      "\nТілек: " + wish;
+
+    alert("Рахмет! Жауабыңыз қабылданды.");
+    console.log(text);
+}
+</script>
+
+</body>
+</html>
